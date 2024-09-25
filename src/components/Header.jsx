@@ -7,8 +7,12 @@ const Header = () => {
 
   return (
     <header className='flex justify-between p-4 bg-green-500 text-white'>
-      <h1 className='text-lg font-bold'>Paradise Nursery</h1>
-      <Link to='/cart' className='relative'>
+      <div className='flex flex-col items-center '>
+        <h1 className='text-xl font-bold'>Paradise Nursery</h1>
+        <h3 className='text-sm italic'>Where Green Meets Serenity</h3>
+      </div>
+      <div className='flex items-center justify-center text-xl'>Plants</div>
+      <Link to='/cart' className='flex items-center justify-center'>
         <span>Cart ({totalQuantity})</span> {/* Toplam öğe sayısını göster */}
       </Link>
     </header>
