@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <>
-      {location.pathname !== '/' && <Header cart={cart} />}
+      {location.pathname !== "/" && <Header cart={cart} />}
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route
