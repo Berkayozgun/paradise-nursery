@@ -184,7 +184,7 @@ const ProductsPage = ({ productsData }) => {
           {items.map((product) => (
             <div
               key={product.id}
-              className='border flex flex-col p-4 w-60 items-center justify-center rounded-lg'
+              className='border flex flex-col p-4 w-80 items-center justify-center rounded-lg'
             >
               <img
                 src={product.image}
