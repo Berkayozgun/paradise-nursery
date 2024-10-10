@@ -1,16 +1,12 @@
-import { useSelector, useDispatch } from "react-redux";
-import {
-  incrementQuantity,
-  decrementQuantity,
-  removeFromCart,
-} from "../features/cart/cartSlice";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import CartItem from "../components/CartItem";
 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems) || [];
   const totalQuantity = useSelector((state) => state.cart.totalQuantity) || 0;
   const totalPrice = useSelector((state) => state.cart.totalPrice) || 0;
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
@@ -18,45 +14,7 @@ const CartPage = () => {
       <h2 className='text-2xl font-bold mb-4'>Your Shopping Cart</h2>
       <div className='bg-white shadow-md rounded-lg p-4'>
         {cartItems.length > 0 ? (
-          cartItems.map((item) => (
-            <div
-              key={item?.id}
-              className='flex items-center justify-between p-4 mb-4 border-b last:border-b-0'
-            >
-              <div className='flex items-center space-x-4'>
-                <img
-                  src={item?.image}
-                  alt={item?.name}
-                  className='w-20 h-20 object-cover rounded'
-                />
-                <div>
-                  <p className='text-lg font-semibold'>{item?.name}</p>
-                  <p className='text-gray-500'>${item?.price?.toFixed(2)}</p>
-                </div>
-              </div>
-              <div className='flex items-center space-x-4'>
-                <button
-                  onClick={() => dispatch(decrementQuantity(item))}
-                  className='px-2 py-1 bg-gray-200 rounded hover:bg-gray-300'
-                >
-                  -
-                </button>
-                <span className='font-semibold'>{item?.quantity}</span>
-                <button
-                  onClick={() => dispatch(incrementQuantity(item))}
-                  className='px-2 py-1 bg-gray-200 rounded hover:bg-gray-300'
-                >
-                  +
-                </button>
-              </div>
-              <button
-                onClick={() => dispatch(removeFromCart(item))}
-                className='px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600'
-              >
-                Remove
-              </button>
-            </div>
-          ))
+          cartItems.map((item) => <CartItem key={item?.id} item={item} />)
         ) : (
           <p className='text-center text-gray-500'>Your cart is empty.</p>
         )}
@@ -77,7 +35,6 @@ const CartPage = () => {
         </button>
       </div>
 
-      {/* Continue Shopping Button */}
       <div className='mt-4'>
         <Link
           to='/products'
