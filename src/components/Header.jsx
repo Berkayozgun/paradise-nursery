@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const totalQuantity = useSelector((state) => state.cart.totalQuantity); // Redux store'dan toplam öğe sayısını al
+  // Get total quantity of items in cart from Redux store
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   return (
     <header className='flex justify-between items-center p-4 bg-green-600 text-white shadow-md'>
@@ -41,7 +42,7 @@ const Header = () => {
             d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m5-9v9m4-9v9m4-9l2 9M9 5h6m-6 0a2 2 0 11-4 0 2 2 0 014 0zm6 0a2 2 0 11-4 0 2 2 0 014 0z'
           ></path>
         </svg>
-        <span>Cart ({totalQuantity})</span> {/* Toplam öğe sayısını göster */}
+        <span>Cart ({totalQuantity})</span> {/* Display total quantity */}
       </Link>
     </header>
   );

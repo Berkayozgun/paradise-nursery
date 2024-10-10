@@ -1,6 +1,7 @@
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
+// Function to generate invoice PDF
 export const generateInvoice = (cartItems, totalAmount, customerInfo) => {
   const doc = new jsPDF();
 
@@ -9,15 +10,15 @@ export const generateInvoice = (cartItems, totalAmount, customerInfo) => {
   doc.setFontSize(11);
   doc.setTextColor(100);
 
-  // Müşteri bilgileri
+  // Customer information
   doc.text(`Name: ${customerInfo.name}`, 14, 35);
   doc.text(`Email: ${customerInfo.email}`, 14, 42);
   doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 49);
 
-  // Tablo başlıkları
+  // Table headers
   const headers = [['Product', 'Quantity', 'Price', 'Total']];
   
-  // Tablo verileri
+  // Table data
   const data = cartItems.map(item => [
     item.name,
     item.quantity,
@@ -25,20 +26,21 @@ export const generateInvoice = (cartItems, totalAmount, customerInfo) => {
     `$${(item.price * item.quantity).toFixed(2)}`
   ]);
 
-  // Tablo oluşturma
+  // Create table
   doc.autoTable({
     startY: 60,
     head: headers,
     body: data,
   });
 
-  // Toplam tutar
+  // Total amount
   const finalY = doc.lastAutoTable.finalY || 60;
   doc.text(`Total Amount: $${totalAmount.toFixed(2)}`, 14, finalY + 15);
 
   return doc;
 };
 
+// Function to download invoice PDF
 export const downloadInvoice = (cartItems, totalAmount, customerInfo) => {
   const doc = generateInvoice(cartItems, totalAmount, customerInfo);
   doc.save("paradise_nursery_invoice.pdf");

@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Spinner from "./components/Spinner";
 
+// Lazy load components
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const Header = lazy(() => import("./components/Header"));
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
@@ -15,6 +16,7 @@ const App = () => {
 
   return (
     <Suspense fallback={<Spinner />}>
+      {/* Show Header on all pages except the LandingPage */}
       {location.pathname !== "/" && <Header />}
       <Routes>
         <Route path='/' element={<LandingPage />} />

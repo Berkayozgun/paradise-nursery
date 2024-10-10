@@ -8,15 +8,18 @@ const ProductsPage = () => {
   const dispatch = useDispatch();
   const [addedProducts, setAddedProducts] = useState(new Set());
 
+  // Handle adding product to cart
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    setAddedProducts((prev) => new Set(prev).add(product.id)); // Ürünü ekle
+    setAddedProducts((prev) => new Set(prev).add(product.id)); // Add product to set
   };
 
+  // Check if product is in cart
   const isInCart = (product) => {
     return addedProducts.has(product.id);
   };
 
+  // Filter products by category
   const airPurifyingItems = productsData.filter(
     (product) => product.category === "Air Purifying"
   );
@@ -27,6 +30,7 @@ const ProductsPage = () => {
     (product) => product.category === "Aromatic Flagrant"
   );
 
+  // Render product category
   const renderProductCategory = (categoryName, items) => {
     if (items.length === 0) return null;
 

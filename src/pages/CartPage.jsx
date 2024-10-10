@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
 
 const CartPage = () => {
+  // Get cart items, total quantity, and total price from Redux store
   const cartItems = useSelector((state) => state.cart.cartItems) || [];
   const totalQuantity = useSelector((state) => state.cart.totalQuantity) || 0;
   const totalPrice = useSelector((state) => state.cart.totalPrice) || 0;
