@@ -45,7 +45,7 @@ To get started with the project, follow these steps:
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/your-username/paradise-nursery.git
+   git clone https://github.com/Berkayozgun/paradise-nursery.git
    cd paradise-nursery
    ```
 2. **Install dependencies**:
