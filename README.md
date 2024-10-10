@@ -28,6 +28,7 @@ The Paradise Nursery Shopping Application is a front-end application built using
 - **src/pages/ProductsPage.jsx**: The page where products are listed, allowing filtering by category and adding products to the cart.
 - **src/pages/CartPage.jsx**: The page where users can view and manage their cart.
 - **src/pages/LandingPage.jsx**: The landing page of the application, directing users to the products page.
+- **src/pages/CheckoutPage.jsx**: The page where users can complete their purchase and download an invoice.
 - **src/main.jsx**: The entry point of the application, containing configurations for React, Redux, and React Router.
 
 ## Technologies Used
@@ -40,24 +41,39 @@ The Paradise Nursery Shopping Application is a front-end application built using
 
 ## Installation and Running
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd <repository-directory>
-   ```
+To get started with the project, follow these steps:
 
-2. Install dependencies:
-   ```bash
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/your-username/paradise-nursery.git
+   cd paradise-nursery
+   ```
+2. **Install dependencies**:
+   ```sh
    npm install
    ```
-
-3. Start the development server:
-   ```bash
+3. **Run the development server**:
+   ```sh
    npm run dev
    ```
-
-4. Open your browser and navigate to `http://localhost:3000` to view the application.
+4. **Build for production**:
+   ```sh
+   npm run build
+   ```
+5. **Preview the production build**:
+   ```sh
+   npm run preview
+   ```
 
 ## Contributing
 
-If you wish to contribute, please submit a pull request or open an issue. All contributions and feedback are welcome.
+If you would like to contribute to this project, please fork the repository and submit a pull request. We welcome all contributions!
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## Contact
+
+For any questions or feedback, please contact berkayozgun001@gmail.com
+
