@@ -184,7 +184,7 @@ const ProductsPage = ({ productsData }) => {
           {items.map((product) => (
             <div
               key={product.id}
-              className='border flex flex-col p-4 w-80 items-center justify-center rounded-lg'
+              className='flex flex-col p-4 w-80 items-center justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow'
             >
               <img
                 src={product.image}
@@ -221,4 +221,7 @@ const ProductsPage = ({ productsData }) => {
   );
 };
 
-export default () => <ProductsPage productsData={productsData} />;
+const ProductsPageWrapper = () => <ProductsPage productsData={productsData} />;
+ProductsPageWrapper.displayName = "ProductsPageWrapper";
+
+export default ProductsPageWrapper;

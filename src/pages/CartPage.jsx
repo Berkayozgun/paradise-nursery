@@ -1,17 +1,17 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   incrementQuantity,
   decrementQuantity,
   removeFromCart,
 } from "../features/cart/cartSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartPage = () => {
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const cartItems = useSelector((state) => state.cart.cartItems) || [];
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity) || 0;
+  const totalPrice = useSelector((state) => state.cart.totalPrice) || 0;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className='container mx-auto p-4'>
@@ -20,18 +20,18 @@ const CartPage = () => {
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <div
-              key={item.id}
+              key={item?.id}
               className='flex items-center justify-between p-4 mb-4 border-b last:border-b-0'
             >
               <div className='flex items-center space-x-4'>
                 <img
-                  src={item.image}
-                  alt={item.name}
+                  src={item?.image}
+                  alt={item?.name}
                   className='w-20 h-20 object-cover rounded'
                 />
                 <div>
-                  <p className='text-lg font-semibold'>{item.name}</p>
-                  <p className='text-gray-500'>${item.price.toFixed(2)}</p>
+                  <p className='text-lg font-semibold'>{item?.name}</p>
+                  <p className='text-gray-500'>${item?.price?.toFixed(2)}</p>
                 </div>
               </div>
               <div className='flex items-center space-x-4'>
@@ -41,7 +41,7 @@ const CartPage = () => {
                 >
                   -
                 </button>
-                <span className='font-semibold'>{item.quantity}</span>
+                <span className='font-semibold'>{item?.quantity}</span>
                 <button
                   onClick={() => dispatch(incrementQuantity(item))}
                   className='px-2 py-1 bg-gray-200 rounded hover:bg-gray-300'
@@ -70,7 +70,7 @@ const CartPage = () => {
 
       <div className='mt-6'>
         <button
-          onClick={() => alert("Checkout feature is not available.")}
+          onClick={() => navigate('/checkout')}
           className='w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
         >
           Checkout

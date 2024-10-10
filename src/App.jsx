@@ -1,45 +1,31 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import ProductsPage from "./pages/ProductsPage";
-import CartPage from "./pages/CartPage";
 import Header from "./components/Header";
-import "./App.css";
+import Spinner from "./components/Spinner";
+
+const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const CartPage = lazy(() => import("./pages/CartPage"));
+const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
+const Contact = lazy(() => import("./pages/Contact"));
+const About = lazy(() => import("./pages/About"));
 
 const App = () => {
-  const location = useLocation(); // useLocation hook'unu kullanıyoruz
-
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (product) => {
-    const existingProduct = cart.find((item) => item.id === product.id);
-    if (existingProduct) {
-      setCart(
-        cart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      setCart([...cart, { ...product, quantity: 1 }]);
-    }
-  };
+  const location = useLocation();
 
   return (
     <>
-      {location.pathname !== "/" && <Header cart={cart} />}
-      <Routes>
-        <Route path='/' element={<LandingPage />} />
-        <Route
-          path='/products'
-          element={<ProductsPage addToCart={addToCart} />}
-        />
-        <Route
-          path='/cart'
-          element={<CartPage cart={cart} updateCart={setCart} />}
-        />
-      </Routes>
+      {location.pathname !== "/" && <Header />}
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/products' element={<ProductsPage />} />
+          <Route path='/cart' element={<CartPage />} />
+          <Route path='/checkout' element={<CheckoutPage />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/about' element={<About />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
